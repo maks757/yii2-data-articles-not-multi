@@ -1,5 +1,5 @@
 {
-  "name": "maks757/yii2-data-articles",
+  "name": "maks757/yii2-data-articles-not-multi",
   "description": "Articles module.",
   "keywords": ["articles"],
   "type": "yii2-extension",
@@ -11,7 +11,6 @@
   ],
   "require": {
     "yiisoft/yii2": ">=2.0.4",
-    "maks757/languages": "*",
     "maks757/yii2-imagable": "*",
     "kartik-v/yii2-widget-fileinput": "*",
     "2amigos/yii2-tinymce-widget": "~1.1",
