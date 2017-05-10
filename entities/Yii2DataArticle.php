@@ -79,7 +79,7 @@ class Yii2DataArticle extends \yii\db\ActiveRecord
 
     public function getSeo()
     {
-        return $this->hasOne(SeoData::className(), ['entity_id' => 'id']);
+        return $this->hasOne(SeoData::className(), ['entity_id' => 'id'])->onCondition(['entity_name' => Yii2DataArticle::className()]);
     }
 
     /**
