@@ -2,8 +2,10 @@
 
 namespace maks757\articlesdata\entities;
 
+use dosamigos\transliterator\TransliteratorHelper;
 use maks757\imagable\Imagable;
 use maks757\seo\behaviors\SeoDataBehavior;
+use maks757\seo\entities\SeoData;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
@@ -16,10 +18,15 @@ use yii\helpers\FileHelper;
  * @property integer $date
  * @property string $name
  * @property string $description
+ * @property string $seoUrl
+ * @property string $seoTitle
+ * @property string $seoDescription
+ * @property string $seoKeywords
  *
  * @property Yii2DataArticleGallery[] $articleGalleries
  * @property Yii2DataArticleImage[] $articleImages
  * @property Yii2DataArticleText[] $articleTexts
+ * @property SeoData $seo
  */
 class Yii2DataArticle extends \yii\db\ActiveRecord
 {
@@ -68,6 +75,11 @@ class Yii2DataArticle extends \yii\db\ActiveRecord
             'seoDescription' => 'СЕО Описание',
             'seoKeywords' => 'СЕО Ключи',
         ];
+    }
+
+    public function getSeo()
+    {
+        return $this->hasOne(SeoData::className(), ['entity_id' => 'id']);
     }
 
     /**
@@ -198,6 +210,9 @@ class Yii2DataArticle extends \yii\db\ActiveRecord
         if(!empty($post)){
             $this->load($post);
             $this->date = !empty($this->date) ? strtotime($this->date) : time();
+            if(empty($this->seoUrl)){
+                $this->seoUrl = TransliteratorHelper::process($this->name, '', 'en');
+            }
             if(!empty($image))
                 $this->image = $image;
             $this->save();
