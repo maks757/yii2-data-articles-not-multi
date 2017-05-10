@@ -3,6 +3,7 @@
 namespace maks757\articlesdata\entities;
 
 use maks757\imagable\Imagable;
+use maks757\seo\behaviors\SeoDataBehavior;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
@@ -22,6 +23,14 @@ use yii\helpers\FileHelper;
  */
 class Yii2DataArticle extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            'seoData' => [
+                'class' => SeoDataBehavior::className()
+            ]
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -42,6 +51,8 @@ class Yii2DataArticle extends \yii\db\ActiveRecord
             [['image'], 'string', 'max' => 100],
             [['description'], 'string'],
             [['name'], 'string', 'max' => 255],
+            // seo data
+            [['seoUrl', 'seoTitle', 'seoDescription', 'seoKeywords'], 'string']
         ];
     }
 
@@ -51,7 +62,11 @@ class Yii2DataArticle extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID'
+            'id' => 'ID',
+            'seoUrl' => 'СЕО Ссылка',
+            'seoTitle' => 'СЕО Заголовок',
+            'seoDescription' => 'СЕО Описание',
+            'seoKeywords' => 'СЕО Ключи',
         ];
     }
 

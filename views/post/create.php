@@ -56,7 +56,56 @@ $this->registerCss($css);
         'class' => 'form-control',
         'id' => 'amtimevideo-date'
     ]
-])->label('Дата') ?><br>
+])->label('Дата') ?>
+
+
+<div class="panel-group" role="tablist" id="ceo" aria-multiselectable="false">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+                <a href="#collapseOne" role="button" data-toggle="collapse"
+                   data-parent="#ceo" aria-expanded="true" aria-controls="collapseOne"
+                   class=""> СЕО </a>
+                <a href="#collapseOne" role="button" data-toggle="collapse"
+                   data-parent="#ceo" aria-expanded="true" aria-controls="collapseOne"
+                   class="glyphicon glyphicon-download pull-right"></a>
+            </h4>
+        </div>
+        <div class="panel-collapse collapse" role="tabpanel" id="collapseOne"
+             aria-labelledby="headingOne" aria-expanded="true">
+            <div class="panel-body">
+                <?= $form->field($model, 'seoUrl', [
+                    'inputOptions' => [
+                        'class' => 'form-control'
+                    ]
+                ]);
+                ?>
+
+                <?= $form->field($model, 'seoTitle', [
+                    'inputOptions' => [
+                        'class' => 'form-control'
+                    ]
+                ]);
+                ?>
+
+                <?= $form->field($model, 'seoDescription', [
+                    'inputOptions' => [
+                        'class' => 'form-control'
+                    ]
+                ])->textarea(['rows' => 3]);
+                ?>
+
+                <?= $form->field($model, 'seoKeywords', [
+                    'inputOptions' => [
+                        'class' => 'form-control'
+                    ]
+                ])->textarea(['rows' => 3]);
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
 <?= \yii\bootstrap\Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
 <?php ActiveForm::end() ?>
 <?php Pjax::begin(['enablePushState' => false]); ?>
