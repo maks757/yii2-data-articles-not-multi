@@ -9,6 +9,7 @@ use maks757\articlesdata\components\UploadImage;
 use maks757\articlesdata\entities\Yii2DataArticle;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\VerbFilter;
 use yii\helpers\FileHelper;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -16,6 +17,21 @@ use yii\web\UploadedFile;
 
 class PostController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
+        ];
+    }
+
     public function actionIndex()
     {
         $provider = new ActiveDataProvider([

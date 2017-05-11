@@ -32,8 +32,13 @@ use maks757\articlesdata\entities\Yii2DataArticle;
             <td>
                 <a href="<?= \yii\helpers\Url::toRoute(['/articles/post/create', 'id' => $article->id])?>"
                     class="btn btn-info btn-xs">Изменить</a>
-                <a href="<?= \yii\helpers\Url::toRoute(['/articles/post/delete', 'id' => $article->id])?>"
-                    class="btn btn-danger btn-xs">Удалить</a>
+                <?= \yii\helpers\Html::a('Удалить' ,['/articles/post/delete', 'id' => $article->id], [
+                    'class' => 'btn btn-danger btn-xs',
+                    'data' => [
+                        'method' => 'post',
+                        'confirm' => 'Вы точно хотите удалить запись?',
+                    ]
+                ]) ?>
             </td>
         </tr>
     <?php endforeach; ?>
