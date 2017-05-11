@@ -8,6 +8,8 @@ use maks757\articlesdata\entities\Yii2DataArticle;
  */
 ?>
 
+<a href="<?= \yii\helpers\Url::toRoute(['/articles/post/create'])?>"
+   class="btn btn-success">Добавить статью</a><br><br>
 <table class="table table-bordered">
     <thead>
     <tr>
@@ -24,7 +26,7 @@ use maks757\articlesdata\entities\Yii2DataArticle;
         <tr style="height: 70px;">
             <th><?= $article->id ?></th>
             <td><?= $article->name ?></td>
-            <td><?= $article->description ?></td>
+            <td><?= \yii\helpers\StringHelper::truncate(strip_tags($article->description), 200) ?></td>
             <td><img src="<?= $article->getImage() ?>" alt="" width="100"></td>
             <td><?= date('d-m-Y', $article->date) ?></td>
             <td>
@@ -37,5 +39,6 @@ use maks757\articlesdata\entities\Yii2DataArticle;
     <?php endforeach; ?>
     </tbody>
 </table>
-<a href="<?= \yii\helpers\Url::toRoute(['/articles/post/create'])?>"
-    class="btn btn-success pull-right">Добавить статью</a>
+<div class="text-center">
+    <?= \yii\widgets\LinkPager::widget(['pagination' => $pagination]) ?>
+</div>

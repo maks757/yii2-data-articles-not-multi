@@ -8,6 +8,7 @@ namespace maks757\articlesdata\controllers;
 use maks757\articlesdata\components\UploadImage;
 use maks757\articlesdata\entities\Yii2DataArticle;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\helpers\FileHelper;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -17,8 +18,15 @@ class PostController extends Controller
 {
     public function actionIndex()
     {
+        $provider = new ActiveDataProvider([
+            'query' => Yii2DataArticle::find()->orderBy(['date' => SORT_DESC]),
+            'pagination' => [
+                'pageSize' => 10,
+                ],
+            ]);
         return $this->render('index', [
-            'articles' => Yii2DataArticle::find()->orderBy(['date' => SORT_DESC])->all(),
+            'articles' => $provider->getModels(),
+            'pagination' => $provider->getPagination()
         ]);
     }
 
