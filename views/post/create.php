@@ -11,6 +11,7 @@
  * @var $rows array
  * @var $module \yii\base\Module
  * @var $article \maks757\articlesdata\entities\Yii2DataArticle
+ * @var $module \maks757\articlesdata\ArticleModule
  */
 
 use kartik\file\FileInput;
@@ -109,7 +110,7 @@ $this->registerCss($css);
 <?= \yii\bootstrap\Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
 <?php ActiveForm::end() ?>
 <?php Pjax::begin(['enablePushState' => false]); ?>
-<?php if (!empty($model->id)): ?>
+<?php if (!empty($model->id) && $module->showFields): ?>
     <hr>
     <h2 class="text-center">Поля статьи</h2>
     <div class="btn-group dropup">

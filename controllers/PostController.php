@@ -83,6 +83,7 @@ class PostController extends Controller
             'model' => $model,
             'image_model' => $image_model,
             'rows' => $rows,
+            'module' => $this->module
         ]);
     }
 

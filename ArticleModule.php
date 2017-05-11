@@ -6,8 +6,12 @@
 namespace maks757\articlesdata;
 
 use yii\base\Module;
-
+/**
+ * @property boolean $showFields
+*/
 class ArticleModule extends Module
 {
     public $defaultRoute = 'post/index';
+
+    public $showFields = true;
 }
